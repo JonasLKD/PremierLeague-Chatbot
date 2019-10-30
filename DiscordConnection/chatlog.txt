@@ -1,0 +1,22 @@
+[25/10/2019 14:00:45] Hydro#2393: time?
+[25/10/2019 14:00:45] Bot: Time is 14:00
+[27/10/2019 15:02:28] Hydro#2393: hi
+[27/10/2019 15:02:28] Bot: Hi
+[27/10/2019 15:02:31] Hydro#2393: no
+[27/10/2019 15:02:31] Bot: I don't understand this yet!
+[27/10/2019 15:02:34] Hydro#2393: no 123
+[27/10/2019 15:02:34] Bot: I don't understand this yet!
+[27/10/2019 15:02:37] Hydro#2393: no 140ynd wa wb 2
+[27/10/2019 15:02:37] Bot: I don't understand this yet!
+[27/10/2019 15:03:29] Hydro#2393: date?
+[27/10/2019 15:03:29] Bot: The date is 27/10/2019
+[27/10/2019 15:03:32] Hydro#2393: time?
+[27/10/2019 15:03:32] Bot: Time is 15:03
+[27/10/2019 15:04:08] Hydro#2393: time?
+[27/10/2019 15:04:08] Bot: Time is 15:04
+[27/10/2019 17:10:19] Hydro#2393: test
+[27/10/2019 17:10:19] Bot: I don't understand this yet!
+[30/10/2019 11:25:25] Hydro#2393: hi
+[30/10/2019 11:25:25] Bot: The name's MoneyBall.
+[30/10/2019 11:25:30] Hydro#2393: hi
+[30/10/2019 11:25:30] Bot: How are you?
