@@ -13,6 +13,6 @@ Description: The objective for this ChatBot is to engage a conversation with a u
 
 This ChatBot will feature:
 * Discord API
-* Live player value API
+* Player value API
 * Keyword Identifier (neural network)
 * File Handler/Analysis
