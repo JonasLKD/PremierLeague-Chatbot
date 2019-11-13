@@ -1,5 +1,5 @@
-Module: 4006CEM
-Class: B
+Module: 4006CEM,
+Class: B,
 Group: 5
 
 Kind reminder: If anyone does obtain any ideas from this project, could you please use our group as a reference.
