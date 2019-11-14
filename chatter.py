@@ -69,7 +69,7 @@ def calcPercent(word, source):
     """calculates the percentage of the
         given word"""
 
-    numOfApp = 0
+    numOfApp = 0 #frequency
     source = source.split(" ")  # splits by space character
     for i in source:  # loops through the list
         if i.lower() == word.lower():
@@ -83,7 +83,7 @@ def retrieveData(file, keyword, club):
     return [club, getCell(file, index, keyword)]
 
 
-def toList(filename):
+def filetoList(filename):
     """Turns the given file to a list"""
     with open(filename) as csvFile:  # opens the given file
         csvReader = csv.reader(csvFile, delimiter='\n')  # splits contents by newline
