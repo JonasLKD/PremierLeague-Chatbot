@@ -1,6 +1,7 @@
 dictonaryL = {"wins": ["wins", "victories", "victory", "win", "won", "attain"],
               "losses": ["losses", "lose", "loss", "lost", "defeat", "defeated", "defeats"],
               "points": ["points"],
+              "draws": ["draw", "draws", "tie"]
               "goals for": ["goals for", "goal for"],
               "goals against": ["goals against", "goal against"],
               "goal difference": ["goal difference", "goal difference"]}
