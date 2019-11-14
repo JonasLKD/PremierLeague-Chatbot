@@ -6,7 +6,8 @@ import sys  # sys module allows me to access functions that interact strongly wi
 from datetime import datetime  # datetime modules allows me to format the current time and date
 
 # our contributed modules
-from chatter import *
+from chatter import *  # importing everything because function names are changed constantly, even though this program
+# only uses one function from the chatter.py
 
 
 class DiscordChatBot:
@@ -38,13 +39,7 @@ class DiscordChatBot:
 
             async def casual_conversation():
                 """coroutine function for when words are found within greeting inputs"""
-                if message.content.lower() == "quit" or message.content.lower() == "exit":
-                    if not self.start_running:
-                        self.start_running = True
-                        await message.channel.send("Good bye!")
-                        self.start_running = False
-
-                elif message.content.lower() == "time?":
+                if "time" in message.content.lower():
                     if not self.start_running:
                         self.start_running = True
                         now = datetime.now()
@@ -55,7 +50,7 @@ class DiscordChatBot:
                             print(now.strftime("[%d/%m/%Y %H:%M:%S] Bot: {0}".format("Time is %H:%M")))
                         self.start_running = False
 
-                elif message.content.lower() == "date?":
+                elif "date" in message.content.lower():
                     if not self.start_running:
                         self.start_running = True
                         now = datetime.now()
@@ -80,15 +75,37 @@ class DiscordChatBot:
                                                                                            chatOutput[1]))
                                 # section of formatting a response to the user's request of a team stat, .title() makes
                                 # the first letter of the club name a capital
+                                now = datetime.now()
+                                with open('chatlog.txt', 'a') as sys.stdout:
+                                    print(now.strftime("[%d/%m/%Y %H:%M:%S] {0}: {1}".format(message.author,
+                                                                                             message.content.lower())))
+                                    print(now.strftime("[%d/%m/%Y %H:%M:%S] Bot: {0}".format("{0} had {1} {2} in the"
+                                                                                             " 18/19 Premier League.".format(
+                                        chatOutput[0][0].title(),
+                                        chatOutput[0][1],
+                                        chatOutput[1]))))
+                                self.start_running = False
+
                             elif chatOutput[-1] == "excelDataE":
                                 sign = "£"
-                                if chatOutput[1] == "arrivals" or "departures":
+                                if chatOutput[1] == "arrivals" or chatOutput[1] == "departures":
                                     sign = ""
                                 await message.channel.send("{0} had {1}{2} {3} in the"
                                                            " 18/19 Premier League.".format(chatOutput[0][0].title(),
                                                                                            sign,
                                                                                            chatOutput[0][1],
                                                                                            chatOutput[1]))
+                                now = datetime.now()
+                                with open('chatlog.txt', 'a') as sys.stdout:
+                                    print(now.strftime("[%d/%m/%Y %H:%M:%S] {0}: {1}".format(message.author,
+                                                                                             message.content.lower())))
+                                    print(now.strftime("[%d/%m/%Y %H:%M:%S] Bot: {0}".format("{0} had {1}{2} {3} in the"
+                                                                                             " 18/19 Premier League.".format(
+                                        chatOutput[0][0].title(),
+                                        sign,
+                                        chatOutput[0][1],
+                                        chatOutput[1]))))
+                                self.start_running = False
                             else:
                                 await message.channel.send(chatOutput[0])
                         except:
@@ -96,7 +113,7 @@ class DiscordChatBot:
                             # exception handling introduced so that when if statement attempts to find a club name
                             # and would normally result to an error, the user may not be talking about football in
                             # general then as there is no club brought up
-                        self.start_running = False
+                            self.start_running = False
 
             """main if statement for starting a conversation"""
             if str(message.channel) in channels:  # may be removed
