@@ -17,14 +17,14 @@ def api(position):
     url = "https://www.transfermarkt.co.uk/premier-league/toptransfers/wettbewerb/GB1/plus/1/galerie/0?saison_id=2018"
     "&land_id=alle&ausrichtung=&spielerposition_id=alle&altersklasse=&w_s=&zuab=zu"
     
-    Tree = requests.get(url, headers=headers)
-    Soup = BeautifulSoup(Tree.content, 'html.parser')
+    getHeaders = requests.get(url, headers=headers)
+    Soup = BeautifulSoup(getHeaders.content, 'html.parser')
     
     # This finds the data within the given classes and assigns the data to variables
     
-    Players = Soup.find_all("a", {"class": "spielprofil_tooltip"})
-    Val = Soup.find_all("td", {"class": "rechts"})
-    Fee = Soup.find_all("td", {"class": "rechts hauptlink bg_gruen_20"})
+    findPlayers = Soup.find_all("a", {"class": "spielprofil_tooltip"})
+    findVal = Soup.find_all("td", {"class": "rechts"})
+    findFee = Soup.find_all("td", {"class": "rechts hauptlink bg_gruen_20"})
     
     # Creation of lists used
     
@@ -36,18 +36,18 @@ def api(position):
     # loop to add data to the lists
     
     for i in range(0, position):
-        playerList.append(Players[i].text)
-        valList.append(Val[i].text)
-        feeList.append(Fee[i].text)
+        playerList.append(findPlayers[i].text)
+        valList.append(findVal[i].text)
+        feeList.append(findFee[i].text)
         empty1.append('         ')
     
     # creates a dataframe
     
-    df = pd.DataFrame({"Players": playerList, "          ": empty1,
+    datafr = pd.DataFrame({"Players": playerList, "          ": empty1,
                        "Values": valList, "         ": empty1, "Fee": feeList})
     
     # returns the results of the function
     
-    return df.to_string(index=False)
+    return datafr.to_string(index=False)
 
 
