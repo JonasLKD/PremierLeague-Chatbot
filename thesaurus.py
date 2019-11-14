@@ -6,11 +6,11 @@ dictonaryL = {"wins": ["wins", "victories", "victory", "win", "won", "attain"],
               "goal difference": ["goal difference", "goal difference"]}
 
 dictonaryE = {"spend": ["spend", "cost", "spent", "fee", "fees"],
-              "arrival": ["arrival", "arrivals", "attendants"],
+              "arrivals": ["arrival", "arrivals", "attendants"],
               "income": ["income", "incomes", "revenue"],
-              "departures": ["departure", "departure", "leave"],
+              "departures": ["departure", "departure", "leaves", "leavers", "left"],
               "balance": ["profit", "profits", "balance", "balances"],
-              "value": ["worth", "value", "values"]}
+              "value": ["worth", "value", "values", "total"]}
 
 
 def strInDict(string, d):

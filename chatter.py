@@ -3,6 +3,10 @@ import nltk
 from nltk.tokenize import MWETokenizer
 import csv
 import pandas as pd
+import re
+
+# importing own modules
+from API import api
 from thesaurus import *
 
 # nltk.download('punkt') # punkt sentence tokenizer divides a text into a list of sentences
@@ -44,11 +48,12 @@ def getClubNames(source):
 
 
 def getCell(file, index, keyword):
-    if (file == "standings"):
+    if file == "standings":
         output = leagueStandingsFile.at[int(index), keyword]
-    elif (file == "economics"):
+        return output
+    elif file == "economics":
         output = leagueEconomics.at[int(index), keyword]
-    return output
+        return output
 
 
 def getMaxIndex(li):
@@ -76,7 +81,6 @@ def calcPercent(word, source):
 
 def retrieveData(file, keyword, club):
     index = teams.index(club.lower())
-    print(index)
     return [club, getCell(file, index, keyword)]
 
 
@@ -98,11 +102,11 @@ specialWordsE = ["spend", "arrivals", "income", "departures", "balance", "value"
 da = toList("data.csv")
 
 
-def creatingChat(questions):
+def creatingChat(question):
     """allows chatting"""
     result = ""
     # splits the user input
-    tokenizedWords = nltk.word_tokenize(questions.lower())
+    tokenizedWords = nltk.word_tokenize(question.lower())
     taggedTokens = nltk.pos_tag(tokenizedWords)
 
     newlemmatizedWords = []
@@ -122,15 +126,30 @@ def creatingChat(questions):
         for j in newlemmatizedWords:
             if strInDict(j, dictonaryL):
                 searching = False
-                clubName = getClubNames(questions)
+                clubName = getClubNames(question)
                 specialWord = getKeyByValue(j, dictonaryL)
-                result = [retrieveData("standings", specialWord, getClubNames(questions)), j, "excelDataL"]
+                result = [retrieveData("standings", specialWord, getClubNames(question)), j, "excelDataL"]
                 break
             elif strInDict(j, dictonaryE):
                 searching = False
-                clubName = getClubNames(questions)
+                clubName = getClubNames(question)
                 specialWord = getKeyByValue(j, dictonaryE)
-                result = [retrieveData("economics", specialWord, getClubNames(questions)), j, "excelDataE"]
+                result = [retrieveData("economics", specialWord, getClubNames(question)), j, "excelDataE"]
+                break
+            elif len(re.findall(r"top\s\d{1,2}\splayers?", question)) > 0 or len(
+                    re.findall(r"top\splayers?", question)) > 0:
+                searching = False
+                position = re.findall(r"[1-9][0-9]?", question)
+                try:
+                    position = int(position[0])
+                except IndexError:
+                    result = [api(1), "transfers"]
+                else:
+                    if position > 12:
+                        result = ["Invalid number", "transfers"]
+                    else:
+                        result = [api(position), "transfers"]
+                break
             else:
                 wordsPercent = wordsPercent + calcPercent(j, i[0])
         wordsPercent = wordsPercent / len(newlemmatizedWords)
@@ -142,7 +161,7 @@ def creatingChat(questions):
     return result
 
 
-"""def openChat():
+'''def openChat():
     chatOn = True
     while chatOn:
         userInput = input(">>> ")
@@ -151,11 +170,12 @@ def creatingChat(questions):
             print("Good bye!")
         else:
             output = creatingChat(userInput)
-            if(output[-1] == "excelData"):
+            if output[-1] == "excelData":
                 print(output)
-            elif(output[-1] == "other"):
+            elif output[-1] == "other":
+                print(output[0])
+            elif output[-1] == "transfers":
                 print(output[0])
 
-openChat()"""
 
-# print(getClubNames("hello, today I am talking about Man City"))
+openChat()'''

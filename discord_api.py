@@ -90,10 +90,8 @@ class DiscordChatBot:
                                                                                            chatOutput[0][1],
                                                                                            chatOutput[1]))
                             else:
-                                print("Error")
                                 await message.channel.send(chatOutput[0])
                         except:
-                            print("Error")
                             await message.channel.send(creatingChat(message.content.lower()))
                             # exception handling introduced so that when if statement attempts to find a club name
                             # and would normally result to an error, the user may not be talking about football in
