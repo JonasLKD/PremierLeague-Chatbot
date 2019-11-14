@@ -23,9 +23,8 @@ How to use:
 * Pip install following modules:
   * discord.py
   * nltk
-    * nltk.download('punkt')
-    * nltk.download('wordnet')
-    * nltk.download('averaged_perceptron_tagger')
+    * nltk.download('punkt') - located near the top in chatter.py, uncomment this
+    * nltk.download('averaged_perceptron_tagger') - located near the top in chatter.py, uncomment this
   * pandas
   * re
   * requests
