@@ -4,8 +4,6 @@ from nltk.tokenize import MWETokenizer
 import csv
 import pandas as pd
 import re
-
-# importing own modules
 from API import api
 from thesaurus import *
 
@@ -47,21 +45,20 @@ def getClubNames(source):
 
 
 def getCell(file, index, keyword):
-    if file == "standings":
+    if (file == "standings"):
         output = leagueStandingsFile.at[int(index), keyword]
-        return output
-    elif file == "economics":
+    elif (file == "economics"):
         output = leagueEconomics.at[int(index), keyword]
-        return output
+    return output
 
 
 def getMaxIndex(loN):
-    maxNum = loN[0]
-    maxIndex = 0
-    for i in range(len(loN)):
-        if maxNum < loN[i]:
-            maxNum = loN[i]
-            maxIndex = i
+    maxNum = loN[0] #current max number
+    maxIndex = 0    #index of the max number
+    for i in range(len(li)):   #loops through the list
+        if maxNum < loN[i]:    #if the current max number is smaller
+            maxNum = loN[i]    #current biggest number changes 
+            maxIndex = i       #the index changes     
     return maxIndex
 
 
@@ -69,7 +66,7 @@ def calcPercent(word, source):
     """calculates the percentage of the
         given word"""
 
-    numOfApp = 0 #frequency
+    numOfApp = 0
     source = source.split(" ")  # splits by space character
     for i in source:  # loops through the list
         if i.lower() == word.lower():
@@ -80,6 +77,7 @@ def calcPercent(word, source):
 
 def retrieveData(file, keyword, club):
     index = teams.index(club.lower())
+    print(index)
     return [club, getCell(file, index, keyword)]
 
 
@@ -93,13 +91,7 @@ def filetoList(filename):
             words.append(tempList[i][0].split("->"))  # splits by ->
     return words
 
-
-specialWordsL = ["matches", "wins", "losses", "draws", "points", "goals for", "goals against",
-                 "goals difference"]  # phrases that have two words need to be fixed
-specialWordsE = ["spend", "arrivals", "income", "departures", "balance", "value"]
-
-data = toList("data.csv")
-
+data = filetoList("data.csv")
 
 def creatingChat(question):
     """allows chatting"""
@@ -117,7 +109,7 @@ def creatingChat(question):
     averageScore = []  # this will store the mean of every word
 
     searching = True
-
+    
     for i in data:
         wordsPercent = 0
         if not searching:
@@ -135,8 +127,7 @@ def creatingChat(question):
                 specialWord = getKeyByValue(j, dictonaryE)
                 result = [retrieveData("economics", specialWord, getClubNames(question)), j, "excelDataE"]
                 break
-            elif len(re.findall(r"top\s\d{1,2}\splayers?", question)) > 0 or len(
-                    re.findall(r"top\splayers?", question)) > 0:
+            elif len(re.findall(r"top\s\d{1,2}\splayers?", question)) > 0 or len(re.findall(r"top\splayers?", question)) > 0:
                 searching = False
                 position = re.findall(r"[1-9][0-9]?", question)
                 try:
@@ -144,10 +135,10 @@ def creatingChat(question):
                 except IndexError:
                     result = [api(1), "transfers"]
                 else:
-                    if position > 12:
+                    if(position > 12):
                         result = ["Invalid number", "transfers"]
                     else:
-                        result = [api(position), "transfers"]
+                        result = [api(position), "transfers"]  
                 break
             else:
                 wordsPercent = wordsPercent + calcPercent(j, i[0])
@@ -160,8 +151,6 @@ def creatingChat(question):
     return result
 
 
-
-#for development use only
 '''def openChat():
     chatOn = True
     while chatOn:
@@ -171,12 +160,13 @@ def creatingChat(question):
             print("Good bye!")
         else:
             output = creatingChat(userInput)
-            if output[-1] == "excelData":
+            if(output[-1] == "excelData"):
                 print(output)
-            elif output[-1] == "other":
+            elif(output[-1] == "other"):
                 print(output[0])
-            elif output[-1] == "transfers":
-                print(output[0])
+            elif(output[-1] == "transfers"):
+                print(output[0])'''
 
+#openChat()
 
-openChat()'''
+# print(getClubNames("hello, today I am talking about Man City"))
