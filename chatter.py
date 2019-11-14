@@ -99,7 +99,7 @@ specialWordsL = ["matches", "wins", "losses", "draws", "points", "goals for", "g
                  "goals difference"]  # phrases that have two words need to be fixed
 specialWordsE = ["spend", "arrivals", "income", "departures", "balance", "value"]
 
-da = toList("data.csv")
+data = toList("data.csv")
 
 
 def creatingChat(question):
@@ -119,7 +119,7 @@ def creatingChat(question):
 
     searching = True
 
-    for i in da:
+    for i in data:
         wordsPercent = 0
         if not searching:
             break
@@ -157,10 +157,12 @@ def creatingChat(question):
 
     if searching:
         maxIndex = getMaxIndex(averageScore)  # gets the index with the highest mean
-        result = [da[maxIndex][1], "other"]
+        result = [data[maxIndex][1], "other"]
     return result
 
 
+
+#for development use only
 '''def openChat():
     chatOn = True
     while chatOn:
