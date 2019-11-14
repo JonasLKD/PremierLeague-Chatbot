@@ -10,7 +10,6 @@ from API import api
 from thesaurus import *
 
 # nltk.download('punkt') # punkt sentence tokenizer divides a text into a list of sentences
-# nltk.download('wordnet') #
 # nltk.download('averaged_perceptron_tagger') # average perceptron tagger tags each token in a sentence with
 # supplementary information, evaluating what each token means
 
@@ -56,12 +55,12 @@ def getCell(file, index, keyword):
         return output
 
 
-def getMaxIndex(li):
-    maxNum = li[0]
+def getMaxIndex(loN):
+    maxNum = loN[0]
     maxIndex = 0
-    for i in range(len(li)):
-        if maxNum < li[i]:
-            maxNum = li[i]
+    for i in range(len(loN)):
+        if maxNum < loN[i]:
+            maxNum = loN[i]
             maxIndex = i
     return maxIndex
 
