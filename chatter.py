@@ -15,8 +15,8 @@ teams = ['man city', 'liverpool', 'chelsea', 'tottenham', 'arsenal', 'man united
          'leicester city', 'west ham', 'watford', 'crystal palace', 'newcastle', 'bournemouth', 'burnley',
          'southampton', 'brighton', 'cardiff city', 'fulham', 'huddersfield']
 
-leagueStandingsFile = pd.read_csv('league_standings.csv')
-leagueEconomics = pd.read_csv("club_economics.csv")
+leagueStandingsFile = pd.read_csv('CSV Files/league_standings.csv')
+leagueEconomics = pd.read_csv("CSV Files/club_economics.csv")
 
 
 def getClubNames(source):
@@ -91,7 +91,7 @@ def filetoList(filename):
             words.append(tempList[i][0].split("->"))  # splits by ->
     return words
 
-data = filetoList("data.csv")
+data = filetoList("CSV Files/data.csv")
 
 def creatingChat(question):
     """allows chatting"""
