@@ -1,6 +1,5 @@
 # I have imported the following libraries:
 
-from tabulate import tabulate
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
