@@ -43,7 +43,8 @@ def api(position):
     
     # creates a dataframe
     
-    df = pd.DataFrame({"Players": playerList, "          ": empty1, "Values": valList, "         ": empty1, "Fee": feeList})
+    df = pd.DataFrame({"Players": playerList, "          ": empty1,
+                       "Values": valList, "         ": empty1, "Fee": feeList})
     
     # returns the results of the function
     
