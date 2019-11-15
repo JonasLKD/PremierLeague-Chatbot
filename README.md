@@ -4,6 +4,13 @@ Module: 4006CEM,
 Class: B,
 Group: 5
 
+Contributors:
+* Jonas Djondo
+* Roshan Kc
+* Cole Samson
+* Daniel Rodrigues
+* Ihteshaam Naseer
+
 #### Kind reminder: If anyone does obtain any ideas from this project, could you please use our group as a reference.
 
 Description: The objective for this ChatBot is to engage a conversation with a user within specific topics such as: 
